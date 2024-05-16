@@ -58,4 +58,12 @@ public class UserService {
                 .map(UserDTO::new);
     }
 
+    public UserDTO getUserByUsername(String username, Integer type) {
+        User user = switch (type) {
+            case 2 -> userRepository.findByUsernameByParam(username);
+            case 3 -> userRepository.findByUsernameWithoutParamParam(username);
+            default -> userRepository.findByUsername(username);
+        };
+        return new UserDTO(user);
+    }
 }

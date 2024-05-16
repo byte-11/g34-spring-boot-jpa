@@ -45,4 +45,9 @@ public class UserController {
         return ResponseEntity.ok(userService.getUsersByPage(page, size, sortBy));
     }
 
+    @GetMapping("/find")
+    public ResponseEntity<UserDTO> getUserByUsername(@RequestParam String username, @RequestParam(required = false) Integer type) {
+        return ResponseEntity.ok(userService.getUserByUsername(username, type));
+    }
+
 }
